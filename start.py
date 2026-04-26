@@ -5,7 +5,7 @@ import os
 class RubiInterpreter:
     def __init__(self):
         self.running = True
-        # Die Token-Logik wurde für Textblöcke optimiert
+        
         self.token_spec = [
             ('KEYWORD',    r'\b(title|type|cmd|timeout|closescript)\b'),
             ('PAREN_L',    r'\('),
@@ -45,10 +45,10 @@ class RubiInterpreter:
             elif line.startswith("cmd(write):"):
                 i += 1
                 block_content = []
-                # Wir lesen alles, bis wir eine Zeile finden, die nur ")" enthält
+                
                 while i < len(lines) and lines[i].strip() != ")":
-                    content = lines[i].rstrip() # Behält führende Leerzeichen
-                    # Ersetze (leerzeile) durch echte Leerzeile
+                    content = lines[i].rstrip() 
+                    
                     if "(leerzeile)" in content.lower():
                         block_content.append("")
                     else:
@@ -56,7 +56,7 @@ class RubiInterpreter:
                     i += 1
                 
                 print("\n".join(block_content))
-                i += 1 # Überspringe die schließende Klammer ")"
+                i += 1 
 
             # CMD(PAUSE)
             elif "cmd(pause)" in line:
@@ -71,9 +71,8 @@ class RubiInterpreter:
             else:
                 i += 1
 
-# --- START ---
 if __name__ == "__main__":
-    print("--- RUBI INTERPRETER [Smart-Block Mode] ---")
+    print("--- RUBI DEBUGGER ---")
     datei = input("Datei: ").strip()
     if not datei.endswith('.rubi'): datei += ".rubi"
     
