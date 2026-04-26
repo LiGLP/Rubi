@@ -1,0 +1,7 @@
+title: Rubi
+timeout(500ms)
+cmd(write):(
+Hello World
+)
+cmd(pause)
+closescript
